@@ -4,10 +4,14 @@
       <root url="jar://$PROJECT_DIR$/../../dev/Sdk/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../dev/Sdk/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/res" />
       <root url="file://$PROJECT_DIR$/../../dev/Sdk/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/849f4ef3cd818d0ad3fe1a3d0f30b8f4/transformed/jetified-animation-1.0.5/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../../dev/Sdk/caches/modules-2/files-2.1/androidx.compose.animation/animation/1.0.5/e6e8324157b87ff500fa6e0de4a9272f5bdc37ba/animation-1.0.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.animation/animation/1.0.5/e6e8324157b87ff500fa6e0de4a9272f5bdc37ba/animation-1.0.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
