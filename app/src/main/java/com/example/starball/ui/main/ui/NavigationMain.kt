@@ -16,9 +16,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.starball.R
-import com.example.starball.ui.main.Match
-import com.example.starball.ui.main.News
-import com.example.starball.ui.main.Table
 
 sealed class Screens(
     val route: String,
