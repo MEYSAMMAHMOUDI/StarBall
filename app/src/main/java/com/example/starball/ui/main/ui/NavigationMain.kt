@@ -1,7 +1,10 @@
-package com.example.starball.ui.main
+package com.example.starball.ui.main.ui
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.colorResource
@@ -13,6 +16,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.starball.R
+import com.example.starball.ui.main.Match
+import com.example.starball.ui.main.News
+import com.example.starball.ui.main.Table
 
 sealed class Screens(
     val route: String,
@@ -28,6 +34,7 @@ sealed class Screens(
         icon = R.drawable.ic_match
 
     )
+
     object Table : Screens(
         route = "Table",
         icon = R.drawable.ic_table
@@ -46,7 +53,6 @@ fun BottomNavHost(navHostController: NavHostController) {
         composable(route = Screens.Match.route) { Match() }
 
         composable(route = Screens.Table.route) { Table() }
-
 
 
     }

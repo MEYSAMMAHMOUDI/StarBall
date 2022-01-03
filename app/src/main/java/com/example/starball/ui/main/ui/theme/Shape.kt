@@ -1,4 +1,4 @@
-package com.example.starball.ui.main.theme
+package com.example.starball.ui.main.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
