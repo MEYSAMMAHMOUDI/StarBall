@@ -9,8 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(
-    SingletonComponent::class,
-    RepositoryModule::class
+    SingletonComponent::class
 )
 object Module{
 

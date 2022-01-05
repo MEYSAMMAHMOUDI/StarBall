@@ -5,6 +5,8 @@ import com.example.starball.ui.table.data.source.TableDataSource
 import com.example.starball.ui.table.data.source.remote.TableRemoteDataSource
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
@@ -12,6 +14,7 @@ import javax.inject.Singleton
  * Author     : Hamed Ghaderian
  */
 @Module
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
     @Singleton
