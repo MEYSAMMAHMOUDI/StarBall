@@ -1,10 +1,6 @@
 package com.example.starball.ui.main.ui
 
-import androidx.annotation.DrawableRes
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.colorResource
@@ -15,8 +11,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import coil.annotation.ExperimentalCoilApi
 import com.example.starball.R
+import com.example.starball.ui.news.view.NewsList
 
+/**
+ * Created on : 1/5/2022
+ * Author     : Meysam Mahmoudi
+ */
 sealed class Screens(
     val route: String,
     @DrawableRes val icon: Int
@@ -29,29 +31,29 @@ sealed class Screens(
     object Match : Screens(
         route = "Match",
         icon = R.drawable.ic_match
-
     )
 
     object Table : Screens(
         route = "Table",
         icon = R.drawable.ic_table
-
     )
 
 
 }
 
+
+@ExperimentalCoilApi
 @Composable
 fun BottomNavHost(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = Screens.News.route)
+
+
+    NavHost(navController = navHostController, startDestination = "News")
     {
-        composable(route = Screens.News.route) { News() }
-
+        composable("News") {
+             NewsList()
+        }
         composable(route = Screens.Match.route) { Match() }
-
         composable(route = Screens.Table.route) { Table() }
-
-
     }
 }
 

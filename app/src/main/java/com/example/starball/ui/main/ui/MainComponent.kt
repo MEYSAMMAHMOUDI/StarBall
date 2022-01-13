@@ -7,17 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-
-@Preview
-@Composable
-fun News() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
-    {
-        Text(text = "News")
-    }
-
-}
-
+/**
+ * Created on : 1/5/2022
+ * Author     : Meysam Mahmoudi
+ */
 @Preview
 @Composable
 fun Match() {

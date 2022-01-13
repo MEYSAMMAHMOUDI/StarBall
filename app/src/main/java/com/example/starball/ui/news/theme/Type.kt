@@ -1,14 +1,12 @@
-package com.example.starball.ui.main.ui.theme
+package com.example.starball.ui.news.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-/**
- * Created on : 1/5/2022
- * Author     : Meysam Mahmoudi
- */
+
+// Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily.Default,
