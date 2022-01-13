@@ -31,10 +31,7 @@ fun NewsList(
     val scaffoldState = rememberScaffoldState()
     val getAllNewsData = viewModel.getNewsData.observeAsState()
 
-    Surface(
-        color = MaterialTheme.colors.background,
-        modifier = Modifier.fillMaxSize()
-    ) {
+
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             scaffoldState = scaffoldState
@@ -46,22 +43,6 @@ fun NewsList(
                     .fillMaxSize()
                     .background(Color.LightGray)
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Purple500)
-                        .padding(15.dp)
-                ) {
-                    Text(
-                        text = "User Live Data",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        color = Color.White
-                    )
-                }
-
                 scope.launch {
                     val result = viewModel.getNewsData()
                     if (result is Resource.Success) {
@@ -88,7 +69,7 @@ fun NewsList(
                             modifier = Modifier.padding(10.dp)
                         ) {
                             items(getAllNewsData.value!!.articles.size) { index ->
-                                newsListItem(getAllNewsData.value!!.articles[index])
+                                NewsListItem(getAllNewsData.value!!.articles[index])
                             }
                         }
                     }
@@ -96,4 +77,3 @@ fun NewsList(
             }
         }
     }
-}

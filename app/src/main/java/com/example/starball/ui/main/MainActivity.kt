@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import com.example.starball.base.BaseActivity
 import com.example.starball.ui.main.ui.BottomNavHost
 import com.example.starball.ui.main.ui.BottomNavigationScreen
@@ -26,10 +27,10 @@ class MainActivity : BaseActivity() {
 
 
         setContent {
-            CallApiMVVMTheme() {
+
 
                 NewsList()
-            }
+
 
             val listItems = listOf(
                 Screens.News,
@@ -59,7 +60,7 @@ class MainActivity : BaseActivity() {
     }
 
     }
-
+    }
 
 
 

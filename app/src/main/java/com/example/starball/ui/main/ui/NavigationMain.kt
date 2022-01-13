@@ -1,5 +1,6 @@
 package com.example.starball.ui.main.ui
 
+import androidx.annotation.DrawableRes
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

@@ -14,7 +14,7 @@ import javax.inject.Singleton
  */
 @Singleton
 interface RemoteApi {
-    @GET("")
+    @GET("v2/top-headlines?country=gb&category=sports&apiKey=c06101d021a64f8a806c900ed3c05aa0")
     suspend fun getListNews():News
-    //v2/top-headlines?country=gb&category=sports&apiKey=c06101d021a64f8a806c900ed3c05aa0
+
 }

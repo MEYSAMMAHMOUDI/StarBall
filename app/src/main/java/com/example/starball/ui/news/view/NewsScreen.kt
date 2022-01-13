@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
 import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import coil.compose.rememberImagePainter
 import coil.size.Scale
@@ -20,7 +21,7 @@ import com.example.starball.data.models.news.Article
 
 
 @Composable
-fun newsListItem(article: Article) {
+fun NewsListItem(article: Article) {
 
     Card(
         modifier = Modifier
@@ -50,7 +51,7 @@ fun newsListItem(article: Article) {
                     contentDescription = article.title,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .weight(0.2f)
+                        .weight(0.5f)
                 )
 
 
@@ -59,13 +60,14 @@ fun newsListItem(article: Article) {
                     modifier = Modifier
                         .padding(4.dp)
                         .fillMaxHeight()
-                        .weight(0.8f)
+                        .weight(0.7f)
                 ) {
                     Text(
                         text = article.title,
                         style = MaterialTheme.typography.subtitle1,
                         fontWeight = FontWeight.Bold,
-                        maxLines = 1
+                        maxLines = 1,
+                        color = Color.Black
                     )
                     Text(
                         text = article.description,
@@ -73,15 +75,9 @@ fun newsListItem(article: Article) {
                         modifier = Modifier
                             .padding(4.dp),
                         overflow = TextOverflow.Ellipsis,
-                        maxLines = 2
-                    )
-                    Text(
-                        text = article.url,
-                        style = MaterialTheme.typography.body1,
                         maxLines = 2,
-
-                        )
-
+                        color = Color.Black
+                    )
                 }
             }
         }
