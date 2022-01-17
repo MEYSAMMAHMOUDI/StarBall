@@ -20,6 +20,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.starball.ui.news.viewModel.NewsViewModel
 import kotlinx.coroutines.launch
 
@@ -29,6 +30,7 @@ import kotlinx.coroutines.launch
  */
 @Composable
 fun NewsList(
+    navController: NavController,
     viewModel: NewsViewModel = hiltViewModel()
 
 ) {
@@ -69,10 +71,7 @@ fun NewsList(
         scope.launch {
             val result = viewModel.getNewsData()
             if (result is Resource.Success) {
-                Toast.makeText(context, "Fetching data success!", Toast.LENGTH_SHORT).show()
             } else if (result is Resource.Error) {
-                Toast.makeText(context, "Error: ${result.message}", Toast.LENGTH_SHORT)
-                    .show()
             }
         }
 
@@ -110,7 +109,7 @@ fun NewsList(
                     }
 
                     items(getAllNewsData.value!!.articles.size) { index ->
-                        NewsListItem(getAllNewsData.value!!.articles[index])
+                        NewsListItem(getAllNewsData.value!!.articles[index], navController)
                     }
                 }
             }

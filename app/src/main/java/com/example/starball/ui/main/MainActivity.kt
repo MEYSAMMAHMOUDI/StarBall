@@ -3,6 +3,7 @@ package com.example.starball.ui.main
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
@@ -26,9 +27,10 @@ class MainActivity : BaseActivity() {
 
 
         setContent {
+            val scrollState = rememberScrollState()
             val navController = rememberNavController()
             BottomNavigationTheme {
-                NewsList()
+                NewsList(navController)
 
 
                 val listItems = listOf(
@@ -46,7 +48,7 @@ class MainActivity : BaseActivity() {
                     Scaffold(bottomBar = {
                         BottomNavigationScreen(navController = navController, items = listItems)
                     }) {
-                        BottomNavHost(navHostController = navController)
+                        BottomNavHost(navHostController = navController,navController,scrollState)
 
                     }
 

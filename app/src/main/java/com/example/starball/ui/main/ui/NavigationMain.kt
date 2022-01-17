@@ -1,6 +1,7 @@
 package com.example.starball.ui.main.ui
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.ScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,6 +14,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.starball.R
+import com.example.starball.data.models.news.Article
+import com.example.starball.ui.news.view.NewsDetails
 import com.example.starball.ui.news.view.NewsList
 
 /**
@@ -43,16 +46,24 @@ sealed class Screens(
 
 
 @Composable
-fun BottomNavHost(navHostController: NavHostController) {
+fun BottomNavHost(navHostController: NavHostController,navController: NavController,scrollState: ScrollState) {
 
 
     NavHost(navController = navHostController, startDestination = "News")
     {
         composable("News") {
-            NewsList()
+            NewsList(navController)
         }
         composable(route = "Match") { Match() }
         composable(route = "Table") { Table() }
+        composable(route = "NewsDetails") {
+           val article=navController.previousBackStackEntry?.savedStateHandle?.get<Article>("NewsKey")
+            article?.let {
+
+                NewsDetails(scrollState,navController,it)
+            }
+
+        }
     }
 }
 

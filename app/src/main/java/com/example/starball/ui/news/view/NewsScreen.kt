@@ -7,10 +7,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.material.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
@@ -22,17 +24,21 @@ import com.example.starball.data.models.news.Article
  * Author     : Meysam Mahmoudi
  */
 @Composable
-fun NewsListItem(article: Article) {
+fun NewsListItem(article: Article,navController: NavController) {
     val context = LocalContext.current
     if ((article.title != null) && (article.description != null)) {
         Card(
             modifier = Modifier
                 .padding(3.dp, 3.dp)
                 .fillMaxWidth()
-                .height(110.dp),
+                .height(110.dp)
+                .clickable {
+                 navController.currentBackStackEntry?.savedStateHandle?.set("NewsKey",article)
+                    navController.navigate("NewsDetails")
+                },
             shape = RoundedCornerShape(8.dp),
             elevation = 4.dp,
-            backgroundColor = Color(R.color.white)
+            backgroundColor = Color(R.color.white),
         ) {
             Surface() {
 
