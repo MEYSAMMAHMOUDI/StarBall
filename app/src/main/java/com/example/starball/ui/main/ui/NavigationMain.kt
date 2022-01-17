@@ -12,7 +12,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import coil.annotation.ExperimentalCoilApi
 import com.example.starball.R
 import com.example.starball.ui.news.view.NewsList
 
@@ -43,7 +42,6 @@ sealed class Screens(
 }
 
 
-@ExperimentalCoilApi
 @Composable
 fun BottomNavHost(navHostController: NavHostController) {
 
@@ -51,10 +49,10 @@ fun BottomNavHost(navHostController: NavHostController) {
     NavHost(navController = navHostController, startDestination = "News")
     {
         composable("News") {
-             NewsList()
+            NewsList()
         }
-        composable(route = Screens.Match.route) { Match() }
-        composable(route = Screens.Table.route) { Table() }
+        composable(route = "Match") { Match() }
+        composable(route = "Table") { Table() }
     }
 }
 
@@ -62,6 +60,7 @@ fun BottomNavHost(navHostController: NavHostController) {
 fun BottomNavigationScreen(navController: NavController, items: List<Screens>) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+
     BottomNavigation {
         items.forEach { screens ->
             BottomNavigationItem(
@@ -78,7 +77,10 @@ fun BottomNavigationScreen(navController: NavController, items: List<Screens>) {
                     }
                 },
                 icon = {
-                    Icon(painter = painterResource(id = screens.icon), contentDescription = null)
+                    Icon(
+                        painter = painterResource(id = screens.icon),
+                        contentDescription = null
+                    )
                 },
                 label = { Text(text = screens.route) },
                 alwaysShowLabel = false,
@@ -88,5 +90,6 @@ fun BottomNavigationScreen(navController: NavController, items: List<Screens>) {
         }
     }
 }
+
 
 

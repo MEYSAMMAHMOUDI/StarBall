@@ -6,7 +6,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.starball.R
+
 /**
  * Created on : 1/5/2022
  * Author     : Meysam Mahmoudi
@@ -16,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun Match() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
     {
-        Text(text = "Match")
+        Text(text = "Match",color = Color.Black)
     }
 
 }
@@ -26,7 +29,7 @@ fun Match() {
 fun Table() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
     {
-        Text(text = "Table")
+        Text(text = "Table",color = Color.Black)
 
     }
 

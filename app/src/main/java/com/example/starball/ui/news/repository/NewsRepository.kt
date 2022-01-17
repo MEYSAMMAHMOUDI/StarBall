@@ -1,11 +1,14 @@
-package com.example.starball.ui.news
+package com.example.starball.ui.news.repository
 
-import com.example.starball.data.models.news.Article
 import com.example.starball.data.models.news.News
 import com.example.starball.data.remote.RemoteApi
 import com.example.starball.ui.news.view.Resource
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
+/**
+ * Created on : 1/15/2022
+ * Author     : Meysam Mahmoudi
+ */
 @ActivityScoped
 class NewsRepository
 @Inject constructor(private val apiService: RemoteApi){
