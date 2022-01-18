@@ -1,10 +1,15 @@
-package com.example.starball.ui.news.theme
+package com.example.starball.ui.theme
+
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
+/**
+ * Created on : 1/5/2022
+ * Author     : Meysam Mahmoudi
+ */
 private val DarkColorPalette = darkColors(
     primary = Purple200,
     primaryVariant = Purple700,
@@ -27,7 +32,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun RetrofitAPIInJetpackComposeTheme(
+fun BottomNavigationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
@@ -44,8 +49,9 @@ fun RetrofitAPIInJetpackComposeTheme(
         content = content
     )
 }
+
 @Composable
-fun CallApiMVVMTheme(
+fun ParallaxEffectTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
@@ -54,11 +60,4 @@ fun CallApiMVVMTheme(
     } else {
         LightColorPalette
     }
-
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
 }

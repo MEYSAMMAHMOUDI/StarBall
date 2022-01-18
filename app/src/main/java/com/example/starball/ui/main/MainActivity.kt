@@ -11,7 +11,7 @@ import com.example.starball.base.BaseActivity
 import com.example.starball.ui.main.ui.BottomNavHost
 import com.example.starball.ui.main.ui.BottomNavigationScreen
 import com.example.starball.ui.main.ui.Screens
-import com.example.starball.ui.main.ui.theme.BottomNavigationTheme
+import com.example.starball.ui.theme.BottomNavigationTheme
 import com.example.starball.ui.news.view.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,14 +51,12 @@ class MainActivity : BaseActivity() {
                         BottomNavHost(navHostController = navController,navController,scrollState)
 
                     }
-
                 }
             }
 
         }
     }
-
-    }
+}
 
 
 

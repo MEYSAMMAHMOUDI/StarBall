@@ -88,7 +88,7 @@ fun NewsDetails(scrollState: ScrollState, navController: NavController, article:
                     }
             )
             Text(
-                text = article.title,
+                text = article.title ?: "",
                 color = Color.Black,
                 fontSize = 20.sp,
                 fontFamily = FontFamily.Default,
@@ -102,7 +102,7 @@ fun NewsDetails(scrollState: ScrollState, navController: NavController, article:
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = article.description,
+                text = article.description ?: "",
                 color = Color.Black,
                 fontSize = 18.sp,
                 fontFamily = FontFamily.Default,

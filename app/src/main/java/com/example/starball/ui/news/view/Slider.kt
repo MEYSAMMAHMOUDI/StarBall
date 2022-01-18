@@ -19,11 +19,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
-import com.example.starball.ui.news.viewModel.NewsViewModel
 import kotlin.math.max
 import kotlin.math.min
 import coil.size.Scale
 import com.example.starball.R
+import com.example.starball.ui.news.NewsViewModel
+
 /**
  * Created on : 1/17/2022
  * Author     : Meysam Mahmoudi
@@ -31,64 +32,67 @@ import com.example.starball.R
 @Composable
 fun NewsStory(viewModel: NewsViewModel = hiltViewModel()) {
     val getAllNewsData = viewModel.getNewsData.observeAsState()
-    val stepCount = getAllNewsData.value!!.articles.size
+    val stepCount = getAllNewsData.value!!.articles?.size ?: 0
     val currentStep = remember { mutableStateOf(0) }
     val isPaused = remember { mutableStateOf(false) }
     val context = LocalContext.current
-    BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        val imageModifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onTap = { offset ->
-                        currentStep.value = if (offset.x < constraints.maxWidth / 2) {
-                            max(0, currentStep.value - 1)
-                        } else {
-                            min(stepCount - 1, currentStep.value + 1)
-                        }
-                        isPaused.value = false
-                    },
-                    onPress = {
-                        try {
-                            isPaused.value = true
-                            awaitRelease()
-                        } finally {
-                            isPaused.value = false
-                        }
-                    }
-                )
-            }
-        Image(
-            painter = rememberImagePainter(data = viewModel.getNewsData.value!!.articles[currentStep.value].urlToImage,
-              builder = {
-                    scale(Scale.FILL)
-                    placeholder(R.drawable.ic_defulte_news)
-                }
-
-            ),
-            contentDescription = "NewsImage",
-            contentScale = ContentScale.FillHeight,
-            modifier = imageModifier
-        )
-        NewsProgressIndicator(
+    viewModel.getNewsData.value!!.articles?.let {articles ->
+        BoxWithConstraints(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp),
-            stepCount = stepCount,
-            stepDuration = 2_000,
-            unSelectedColor = Color.LightGray,
-            selectedColor = Color.Green,
-            currentStep = currentStep.value,
-            onStepChanged = { currentStep.value = it },
-            isPaused = isPaused.value,
-            onComplete = {
-                currentStep.value=0
-            }
-        )
+                .fillMaxSize()
+        ) {
+            val imageModifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = { offset ->
+                            currentStep.value = if (offset.x < constraints.maxWidth / 2) {
+                                max(0, currentStep.value - 1)
+                            } else {
+                                min(stepCount - 1, currentStep.value + 1)
+                            }
+                            isPaused.value = false
+                        },
+                        onPress = {
+                            try {
+                                isPaused.value = true
+                                awaitRelease()
+                            } finally {
+                                isPaused.value = false
+                            }
+                        }
+                    )
+                }
+            Image(
+                painter = rememberImagePainter(data = articles[currentStep.value].urlToImage,
+                    builder = {
+                        scale(Scale.FILL)
+                        placeholder(R.drawable.ic_defulte_news)
+                    }
+
+                ),
+                contentDescription = "NewsImage",
+                contentScale = ContentScale.FillHeight,
+                modifier = imageModifier
+            )
+            NewsProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
+                stepCount = stepCount,
+                stepDuration = 2_000,
+                unSelectedColor = Color.LightGray,
+                selectedColor = Color.Green,
+                currentStep = currentStep.value,
+                onStepChanged = { currentStep.value = it },
+                isPaused = isPaused.value,
+                onComplete = {
+                    currentStep.value=0
+                }
+            )
+        }
     }
+
 }
 
 @Composable

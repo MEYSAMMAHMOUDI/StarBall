@@ -1,7 +1,8 @@
 package com.example.starball.di
 
+import com.example.starball.BuildConfig
 import com.example.starball.data.remote.RemoteApi
-import com.example.starball.ui.news.NewsRepository
+import com.example.starball.ui.news.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,20 +31,22 @@ object NewsApiServiceModule {
     @Singleton
     @Provides
     fun providesNewsApi(): RemoteApi {
-        var okHttpClient: OkHttpClient? = null
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .build()
+
+        val okHttpClient = OkHttpClient.Builder()
+        okHttpClient.readTimeout(60, TimeUnit.SECONDS)
+        okHttpClient.connectTimeout(60, TimeUnit.SECONDS)
+
+        if (BuildConfig.DEBUG) {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            okHttpClient.addInterceptor(interceptor)
+        }
 
         return Retrofit.Builder()
             .baseUrl("https://newsapi.org/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
+            .client(okHttpClient.build())
             .build()
             .create(RemoteApi::class.java)
     }

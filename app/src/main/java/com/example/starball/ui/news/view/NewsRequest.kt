@@ -1,12 +1,14 @@
 package com.example.starball.ui.news.view
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -21,7 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.starball.ui.news.viewModel.NewsViewModel
+import com.example.starball.ui.news.NewsViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -67,13 +69,15 @@ fun NewsList(
         modifier = Modifier
             .background(Color.LightGray)
     ) {
-
-        scope.launch {
-            val result = viewModel.getNewsData()
-            if (result is Resource.Success) {
-            } else if (result is Resource.Error) {
+        LaunchedEffect(scaffoldState.snackbarHostState) {
+            scope.launch {
+                val result = viewModel.getNewsData()
+                if (result is Result.Success) {
+                } else if (result is Result.Error) {
+                }
             }
         }
+
 
         if (!viewModel.isLoading.value) {
             Column(
@@ -86,7 +90,7 @@ fun NewsList(
         }
 
         if (viewModel.isLoading.value) {
-            if (viewModel.getNewsData.value!!.articles.isNotEmpty()) {
+            if (viewModel.getNewsData.value!!.articles != null && viewModel.getNewsData.value!!.articles!!.isNotEmpty()) {
                 LazyColumn(
                     modifier = Modifier
                         .padding(bottom = 60.dp)
@@ -108,8 +112,10 @@ fun NewsList(
                         }
                     }
 
-                    items(getAllNewsData.value!!.articles.size) { index ->
-                        NewsListItem(getAllNewsData.value!!.articles[index], navController)
+                    getAllNewsData.value!!.articles?.let {
+                        items(getAllNewsData.value!!.articles!!.size) { index ->
+                            NewsListItem(getAllNewsData.value!!.articles!![index], navController)
+                        }
                     }
                 }
             }

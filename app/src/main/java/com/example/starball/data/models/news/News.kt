@@ -4,5 +4,5 @@ package com.example.starball.data.models.news
  * Author     : Meysam Mahmoudi
  */
 
- class News(  val articles: List<Article>)
+ class News(  val articles: List<Article>?)
 
